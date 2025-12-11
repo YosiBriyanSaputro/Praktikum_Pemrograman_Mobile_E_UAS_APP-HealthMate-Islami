@@ -1,154 +1,238 @@
 import 'package:flutter/material.dart';
 
-// Halaman utama (Beranda) aplikasi HealthMate Islami
-class HomePage extends StatelessWidget {
+// logic
+import '../logic/quran_logic.dart';
+
+// model
+import '../models/quran_verse_model.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  // Widget untuk menampilkan kartu statistik seperti jumlah air/minum dan olahraga
-  Widget _statCard(BuildContext ctx, IconData icon, String title, String value) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)), // sudut membulat
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          children: [
-            // Ikon dalam lingkaran warna primer
-            CircleAvatar(
-              backgroundColor: Theme.of(ctx).colorScheme.primaryContainer,
-              child: Icon(icon, color: Theme.of(ctx).colorScheme.onPrimaryContainer),
-            ),
-            const SizedBox(width: 12),
-            // Teks judul dan nilai statistik
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: const TextStyle(fontSize: 12)),
-                Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final QuranLogic _logic = QuranLogic();
+
+  String ayat = "Memuat ayat...";
+  String arti = "Memuat terjemahan...";
+  String surah = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAyat();
   }
 
-  // Widget tombol menu cepat menuju halaman lain (Water, Food, Exercise, Notes)
-  Widget _menuButton(BuildContext context, IconData icon, String title, String route) {
+  Future<void> _loadAyat() async {
+    final result = await _logic.fetchAyat();
+
+    setState(() {
+      ayat = result.ayat;
+      arti = result.arti;
+      surah = result.surah;
+    });
+  }
+
+  // ============================
+  // 🔥 MENU BUTTON BARU
+  // ============================
+  Widget _menuButton(
+    BuildContext context,
+    IconData icon,
+    String title,
+    String route,
+  ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return InkWell(
-      // Ketika ditekan, pindah ke halaman berdasarkan route
+      borderRadius: BorderRadius.circular(16),
       onTap: () => Navigator.pushNamed(context, route),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)], // efek bayangan
+          borderRadius: BorderRadius.circular(16),
+          color: isDark ? Colors.grey.shade900 : Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: isDark ? Colors.black54 : Colors.black12,
+              blurRadius: 8,
+              spreadRadius: 1,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
-        padding: const EdgeInsets.symmetric(vertical: 14),
+        padding: const EdgeInsets.symmetric(vertical: 18),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 30, color: Colors.teal), // ikon utama menu
-            const SizedBox(height: 8),
-            Text(title, textAlign: TextAlign.center), // nama menu
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.teal.withOpacity(0.12),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(icon, size: 30, color: Colors.teal),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: isDark ? Colors.white : Colors.black87,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
+  // ============================
+  // 🔥 UI
+  // ============================
   @override
   Widget build(BuildContext context) {
-    // Hadits islami yang ditampilkan di bagian atas halaman
-    const hadith = '“Sesungguhnya tubuhmu memiliki hak atasmu.” (HR. Bukhari)';
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Beranda'), // Judul halaman
-        actions: [
-          // Tombol ke halaman Pengaturan (Settings)
-          IconButton(
-            icon: const Icon(Icons.settings),
-            tooltip: 'Pengaturan',
-            onPressed: () {
-              Navigator.pushNamed(context, '/settings');
-            },
-          ),
-        ],
+        title: const Text('Beranda'),
+        elevation: 0,
       ),
+
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Sapaan awal kepada pengguna
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Assalamu’alaikum',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall
-                      ?.copyWith(fontWeight: FontWeight.bold),
+              // -------- Sapaan --------
+              Text(
+                'Assalamu’alaikum,',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 26,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
+              Text(
+                'Semoga harimu penuh keberkahan 🌙',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.primary.withOpacity(0.7),
+                ),
+              ),
 
-              // Kartu berisi hadits islami dan logo aplikasi
-              Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                color: Colors.teal.shade100,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          hadith,
-                          style: const TextStyle(fontStyle: FontStyle.italic),
-                        ),
-                      ),
-                      // Menampilkan logo aplikasi di sisi kanan
-                      Image.asset('assets/logo.png', height: 36),
-                    ],
+              const SizedBox(height: 20),
+
+              // ===================================================
+              // 🔥 CARD AYAT QUR'AN BARU — GRADIENT
+              // ===================================================
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  gradient: LinearGradient(
+                    colors: isDark
+                        ? [
+                            Colors.teal.shade800,
+                            Colors.teal.shade600,
+                          ]
+                        : [
+                            Colors.teal.shade200,
+                            Colors.teal.shade100,
+                          ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color:
+                          isDark ? Colors.black54 : Colors.teal.withOpacity(0.2),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 14),
-
-              // Menampilkan dua kartu kecil berisi statistik kesehatan
-              Row(
-                children: [
-                  Expanded(
-                      child: _statCard(context, Icons.local_drink, 'Air (hari ini)', '4 / 8')),
-                  const SizedBox(width: 12),
-                  Expanded(
-                      child: _statCard(context, Icons.fitness_center, 'Olahraga', '20 menit')),
-                ],
-              ),
-              const SizedBox(height: 14),
-
-              // Judul bagian menu cepat
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Menu Cepat', style: Theme.of(context).textTheme.titleMedium),
-              ),
-              const SizedBox(height: 8),
-
-              // Grid berisi 4 tombol menu utama
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: 2, // dua kolom
-                  crossAxisSpacing: 10, // jarak horizontal antar item
-                  mainAxisSpacing: 10,  // jarak vertikal antar item
-                  childAspectRatio: 1.4, // rasio lebar-tinggi tiap tombol
+                padding: const EdgeInsets.all(20),
+                child: Row(
                   children: [
-                    _menuButton(context, Icons.local_drink, 'Water Tracker', '/water'),
-                    _menuButton(context, Icons.restaurant, 'Food Tracker', '/food'),
-                    _menuButton(context, Icons.fitness_center, 'Exercise', '/exercise'),
-                    _menuButton(context, Icons.note_alt, 'Catatan Pribadi', '/notes'),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            ayat,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontStyle: FontStyle.italic,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            arti,
+                            style: const TextStyle(fontSize: 14, height: 1.4),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            surah,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: isDark
+                                  ? Colors.white70
+                                  : Colors.black.withOpacity(0.6),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Image.asset('assets/logo.png', height: 50),
                   ],
                 ),
               ),
+
+              const SizedBox(height: 26),
+
+              // ------ TITLE MENU ------
+              Text(
+                'Menu Cepat',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              // ===================================================
+              // 🔥 GRID MENU — NEW DESIGN
+              // ===================================================
+              GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: 1.15,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                children: [
+                  _menuButton(
+                      context, Icons.local_drink, 'Water Tracker', '/water'),
+                  _menuButton(
+                      context, Icons.restaurant, 'Food Tracker', '/food'),
+                  _menuButton(context, Icons.fitness_center, 'Exercise',
+                      '/exercise'),
+                  _menuButton(
+                      context, Icons.note_alt, 'Catatan Pribadi', '/notes'),
+                ],
+              ),
+
+              const SizedBox(height: 40),
             ],
           ),
         ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "845636228906",
+    "project_id": "uts-app-healthmate-islami",
+    "storage_bucket": "uts-app-healthmate-islami.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845636228906:android:5dd682b602ba5191767053",
+        "android_client_info": {
+          "package_name": "com.example.uts_app_healthmate_islami"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTs9M4hIiwOD_ljJEnXw2EzuzTFxNyG8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
