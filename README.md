@@ -105,7 +105,7 @@ Contoh endpoint umum:
 
 ## **1. Clone Repository**
 ```bash
-git clone https://github.com/USERNAME/REPO-NAME.git
+git clone [https://github.com/USERNAME/REPO-NAME.git](https://github.com/YosiBriyanSaputro/Praktikum_Pemrograman_Mobile_E_UAS_APP-HealthMate-Islami.git)
 cd REPO-NAME
 ```
 
@@ -137,31 +137,49 @@ flutter run
 
 ---
 
-# 📸 Screenshots (Optional)
-Tambahkan screenshot halaman:
-- Home
-  <img width="221" height="472" alt="image" src="https://github.com/user-attachments/assets/d5e78a44-a3fa-471d-93fa-de908f30d2f1" />
-  
-- Food Tracker
-  <img width="255" height="542" alt="image" src="https://github.com/user-attachments/assets/a7ceea22-02af-4351-9e13-2824a37dba4c" />
+# 📸 Screenshots
 
-- Search makanan
-  <img width="230" height="495" alt="image" src="https://github.com/user-attachments/assets/0423fd7b-2c26-4702-a4ab-02094b5cd8d4" />
+### **📱 UI Preview (2-Kolom — Rapi & Seragam)**
 
-- Water
-  <img width="308" height="659" alt="image" src="https://github.com/user-attachments/assets/68e87bb9-8cc4-4937-bd0a-6e6d6c1f84ea" />
+<table>
+<tr>
+<td><img src="https://github.com/user-attachments/assets/d5e78a44-a3fa-471d-93fa-de908f30d2f1" width="260"></td>
+<td><img src="https://github.com/user-attachments/assets/a7ceea22-02af-4351-9e13-2824a37dba4c" width="260"></td>
+</tr>
+<tr>
+<td align="center">Home</td>
+<td align="center">Food Tracker</td>
+</tr>
 
-- Exercise
-  <img width="261" height="553" alt="image" src="https://github.com/user-attachments/assets/977efe43-2a70-46fd-9b91-e3ccc9da097b" />
+<tr>
+<td><img src="https://github.com/user-attachments/assets/0423fd7b-2c26-4702-a4ab-02094b5cd8d4" width="260"></td>
+<td><img src="https://github.com/user-attachments/assets/68e87bb9-8cc4-4937-bd0a-6e6d6c1f84ea" width="260"></td>
+</tr>
+<tr>
+<td align="center">Search Makanan</td>
+<td align="center">Water Tracker</td>
+</tr>
 
-- Notes
-  <img width="275" height="594" alt="image" src="https://github.com/user-attachments/assets/c50b0cc6-deaa-45bd-ac6d-2232aa6bb4d5" />
+<tr>
+<td><img src="https://github.com/user-attachments/assets/977efe43-2a70-46fd-9b91-e3ccc9da097b" width="260"></td>
+<td><img src="https://github.com/user-attachments/assets/c50b0cc6-deaa-45bd-ac6d-2232aa6bb4d5" width="260"></td>
+</tr>
+<tr>
+<td align="center">Exercise</td>
+<td align="center">Notes</td>
+</tr>
 
-- Report
-  <img width="283" height="605" alt="image" src="https://github.com/user-attachments/assets/110f0252-1e09-42c1-bdc1-d1531e01d3b0" />
+<tr>
+<td><img src="https://github.com/user-attachments/assets/110f0252-1e09-42c1-bdc1-d1531e01d3b0" width="260"></td>
+<td><img src="https://github.com/user-attachments/assets/1bc3946d-d483-4096-9a98-73fd68243c44" width="260"></td>
+</tr>
+<tr>
+<td align="center">Report</td>
+<td align="center">Settings</td>
+</tr>
+</table>
 
-- Settings
-  <img width="289" height="609" alt="image" src="https://github.com/user-attachments/assets/1bc3946d-d483-4096-9a98-73fd68243c44" />
+---
 
 
 ---
