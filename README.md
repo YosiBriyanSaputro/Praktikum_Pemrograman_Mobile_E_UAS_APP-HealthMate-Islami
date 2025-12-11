@@ -139,14 +139,30 @@ flutter run
 
 # 📸 Screenshots (Optional)
 Tambahkan screenshot halaman:
-- Home  
-- Food Tracker  
-- Search makanan  
-- Water  
-- Exercise  
-- Notes  
-- Report  
-- Settings  
+- Home
+  <img width="221" height="472" alt="image" src="https://github.com/user-attachments/assets/d5e78a44-a3fa-471d-93fa-de908f30d2f1" />
+  
+- Food Tracker
+  <img width="255" height="542" alt="image" src="https://github.com/user-attachments/assets/a7ceea22-02af-4351-9e13-2824a37dba4c" />
+
+- Search makanan
+  <img width="230" height="495" alt="image" src="https://github.com/user-attachments/assets/0423fd7b-2c26-4702-a4ab-02094b5cd8d4" />
+
+- Water
+  <img width="308" height="659" alt="image" src="https://github.com/user-attachments/assets/68e87bb9-8cc4-4937-bd0a-6e6d6c1f84ea" />
+
+- Exercise
+  <img width="261" height="553" alt="image" src="https://github.com/user-attachments/assets/977efe43-2a70-46fd-9b91-e3ccc9da097b" />
+
+- Notes
+  <img width="275" height="594" alt="image" src="https://github.com/user-attachments/assets/c50b0cc6-deaa-45bd-ac6d-2232aa6bb4d5" />
+
+- Report
+  <img width="283" height="605" alt="image" src="https://github.com/user-attachments/assets/110f0252-1e09-42c1-bdc1-d1531e01d3b0" />
+
+- Settings
+  <img width="289" height="609" alt="image" src="https://github.com/user-attachments/assets/1bc3946d-d483-4096-9a98-73fd68243c44" />
+
 
 ---
 
